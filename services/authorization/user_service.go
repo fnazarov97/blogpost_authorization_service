@@ -27,8 +27,8 @@ func NewAuthService(cfg config.Config, stg storage.StorageI) *authorizationServi
 	}
 }
 
-// AddUser ...
-func (u *authorizationService) AddUser(c context.Context, req *authorization.CreateUserRequest) (*authorization.User, error) {
+// CreateUser ...
+func (u *authorizationService) CreateUser(c context.Context, req *authorization.CreateUserRequest) (*authorization.User, error) {
 	id := uuid.New()
 
 	hashedPassword, err := util.HashPassword(req.Password)

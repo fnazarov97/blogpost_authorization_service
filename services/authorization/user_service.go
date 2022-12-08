@@ -59,6 +59,16 @@ func (u *authorizationService) GetUserByID(c context.Context, req *authorization
 	return res, nil
 }
 
+// GetUserByUsername ...
+func (u *authorizationService) GetUserByUsername(c context.Context, req *authorization.User) (*authorization.User, error) {
+
+	res, err := u.stg.GetUserByUsername(req.Username)
+	if err != nil {
+		return nil, status.Errorf(codes.NotFound, "u.stg.GetUserByUsername: %s", err.Error())
+	}
+	return res, nil
+}
+
 // GetUserList ...
 func (u *authorizationService) GetUserList(c context.Context, req *authorization.GetUserListRequest) (*authorization.GetUserListResponse, error) {
 	res, err := u.stg.GetUserList(int(req.Offset), int(req.Limit), req.Search)
